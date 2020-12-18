@@ -30,6 +30,7 @@ type Query {
     version: String
     raids: [Raid]
     getRaid(id: ID) : Raid
+    listRaids: [Raid]
 }
 
 input PlayerInput {

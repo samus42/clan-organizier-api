@@ -2,6 +2,7 @@ const packageJSON = require('../../package.json')
 const saveRaid = require('../data/raids/saveRaid')
 const loadRaid = require('../data/raids/loadRaid')
 const archiveRaid = require('../data/raids/archiveRaid')
+const getRaids = require('../data/raids/getRaids')
 
 const resolvers = {
     Query: {
@@ -11,6 +12,9 @@ const resolvers = {
         getRaid(root, { id }) {
             return loadRaid(id)
         },
+        async listRaids() {
+            return getRaids()
+        }
     },
     Mutation: {
         saveRaid(root, { raid }) {
