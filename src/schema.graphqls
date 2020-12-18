@@ -1,0 +1,64 @@
+type Player {
+    name: String
+    destinyId: String
+    iconPath: String
+}
+
+type Role {
+    name: String
+    type: String
+    player: Player
+}
+
+type Stage {
+    title: String
+    description: String
+    roles: [Role]
+}
+
+type Raid {
+    id: ID
+    raidName: String
+    instanceName: String
+    date: String
+    stages: [Stage]
+    roster: [Player]
+}
+
+type Query {
+    version: String
+    raids: [Raid]
+    getRaid(id: ID) : Raid
+}
+
+input PlayerInput {
+    name: String
+    destinyId: String!
+    iconPath: String
+}
+
+input RoleInput {
+    name: String
+    type: String
+    player: PlayerInput
+}
+
+input StageInput {
+    title: String
+    description: String
+    roles: [RoleInput]
+}
+
+input RaidInput {
+    id: ID
+    instanceName: String
+    date: String
+    raidName: String
+    stages: [StageInput]
+    roster: [PlayerInput]
+}
+
+type Mutation {
+    saveRaid(raid: RaidInput) : Raid
+    archiveRaid(id: String): String
+}
