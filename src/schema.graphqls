@@ -23,6 +23,7 @@ type Raid {
     date: String
     stages: [Stage]
     roster: [Player]
+    active: Boolean
 }
 
 type Query {
@@ -59,6 +60,6 @@ input RaidInput {
 }
 
 type Mutation {
-    saveRaid(raid: RaidInput) : Raid
-    archiveRaid(id: String): String
+    saveRaid(raid: RaidInput!) : Raid
+    archiveRaid(id: ID!): Raid
 }
