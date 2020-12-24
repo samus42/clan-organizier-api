@@ -3,7 +3,7 @@ const _ = require('lodash')
 
 const getRaids = async () => {
     const collection = await getRaidsCollection()
-    const results = await collection.find({}).map(formatOutput).toArray()
+    const results = await collection.find({ active: true }).map(formatOutput).toArray()
     return _.sortBy(results, 'date')
 }
 
