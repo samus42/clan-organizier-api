@@ -3,7 +3,7 @@ const saveRaid = require('../data/raids/saveRaid')
 const loadRaid = require('../data/raids/loadRaid')
 const archiveRaid = require('../data/raids/archiveRaid')
 const getRaids = require('../data/raids/getRaids')
-
+const getUserRaidHistory = require('../data/raids/getUserRaidHistory')
 const resolvers = {
     Query: {
         version() {
@@ -14,6 +14,9 @@ const resolvers = {
         },
         async listRaids() {
             return getRaids()
+        },
+        userRaidHistory(root, { destinyId }) {
+            return getUserRaidHistory(destinyId)
         }
     },
     Mutation: {

@@ -31,6 +31,7 @@ type Query {
     raids: [Raid]
     getRaid(id: ID) : Raid
     listRaids: [Raid]
+    userRaidHistory(destinyId: String): [Raid]
 }
 
 input PlayerInput {
