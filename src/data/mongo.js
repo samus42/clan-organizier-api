@@ -12,6 +12,7 @@ const client = new MongoClient(connStr, { useNewUrlParser: true, useUnifiedTopol
 let db = null
 const postfix = env === 'testing' ? '_it' : ''
 const raidsCollectionName = `raids${postfix}`
+const activitiesCollectionName = `activities${postfix}`
 let connecting = false
 
 const getDB = async () => {
@@ -34,6 +35,11 @@ const getRaidsCollection = async () => {
     return db.collection(raidsCollectionName)
 }
 
+const getActivitiesCollection = async () => {
+    const db = await getDB()
+    return db.collection(activitiesCollectionName)
+}
+
 const getObjectID = (id) => {
     return new ObjectID(id)
 }
@@ -42,4 +48,4 @@ const formatOutput = (obj) => {
     if (!obj) return obj
     return _.extend(_.omit(obj, '_id'), { id: obj._id.toString() })
 }
-module.exports = { getDB, getRaidsCollection, client, getObjectID, formatOutput }
+module.exports = { getDB, getActivitiesCollection, getRaidsCollection, client, getObjectID, formatOutput }

@@ -1,7 +1,7 @@
-const { getRaidsCollection, getObjectID, formatOutput } = require('../mongo')
+const { getActivitiesCollection, getObjectID, formatOutput } = require('../mongo')
 
-const archiveRaid = async (id) => {
-    const collection = await getRaidsCollection()
+const archiveActivity = async (id) => {
+    const collection = await getActivitiesCollection()
     const existing = await collection.findOne({ _id: getObjectID(id) })
     if (!existing) {
         throw new Error(`No raid with id ${id} exists!`)
@@ -10,4 +10,4 @@ const archiveRaid = async (id) => {
     return formatOutput({ ...existing, active: false })
 }
 
-module.exports = archiveRaid
+module.exports = archiveActivity

@@ -1,13 +1,36 @@
-type Player {
+type DestinyPlayer {
     name: String
     destinyId: String
     iconPath: String
 }
 
+enum PlayerType {
+    Destiny,
+    Associate
+}
+
+type ActivityPlayer {
+    name: String
+    id: String
+    type: String
+}
+
+type Activity {
+    id: ID
+    type: String
+    instanceName: String
+    players: [ActivityPlayer]
+    maxPlayers: Int
+    date: String
+    info: String
+    active: Boolean
+    version: Int
+}
+
 type Role {
     name: String
     type: String
-    player: Player
+    player: DestinyPlayer
 }
 
 type Stage {
@@ -22,7 +45,7 @@ type Raid {
     instanceName: String
     date: String
     stages: [Stage]
-    roster: [Player]
+    roster: [DestinyPlayer]
     active: Boolean
 }
 
@@ -32,9 +55,11 @@ type Query {
     getRaid(id: ID) : Raid
     listRaids: [Raid]
     userRaidHistory(destinyId: String): [Raid]
+    listActivities: [Activity]
+    getActivity(id: ID): Activity
 }
 
-input PlayerInput {
+input DestinyPlayerInput {
     name: String
     destinyId: String!
     iconPath: String
@@ -43,7 +68,7 @@ input PlayerInput {
 input RoleInput {
     name: String
     type: String
-    player: PlayerInput
+    player: DestinyPlayerInput
 }
 
 input StageInput {
@@ -58,10 +83,29 @@ input RaidInput {
     date: String
     raidName: String
     stages: [StageInput]
-    roster: [PlayerInput]
+    roster: [DestinyPlayerInput]
+}
+
+input ActivityPlayerInput {
+    name: String
+    id: String
+    type: String
+}
+
+input ActivityInput {
+    id: String
+    type: String
+    instanceName: String
+    players: [ActivityPlayerInput]
+    maxPlayers: Int
+    date: String
+    info: String
+    version: Int
 }
 
 type Mutation {
     saveRaid(raid: RaidInput!) : Raid
+    saveActivity(activity: ActivityInput!): Activity
     archiveRaid(id: ID!): Raid
+    archiveActivity(id: ID!): Activity
 }
