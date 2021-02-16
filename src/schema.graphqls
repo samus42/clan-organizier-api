@@ -19,6 +19,7 @@ type Activity {
     id: ID
     type: String
     instanceName: String
+    activityName: String
     players: [ActivityPlayer]
     maxPlayers: Int
     date: String
@@ -95,6 +96,7 @@ input ActivityPlayerInput {
 input ActivityInput {
     id: String
     type: String
+    activityName: String
     instanceName: String
     players: [ActivityPlayerInput]
     maxPlayers: Int
