@@ -48,6 +48,7 @@ type Raid {
     stages: [Stage]
     roster: [DestinyPlayer]
     active: Boolean
+    version: Int
 }
 
 type Query {
@@ -85,6 +86,7 @@ input RaidInput {
     raidName: String
     stages: [StageInput]
     roster: [DestinyPlayerInput]
+    version: Int
 }
 
 input ActivityPlayerInput {

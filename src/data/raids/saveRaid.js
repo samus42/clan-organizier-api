@@ -10,6 +10,10 @@ const saveRaid = async (raid) => {
         if (!existing) {
             throw new Error(`No raid with id ${raid.id} exists!`)
         }
+        if (existing.version && existing.version !== raid.version) {
+            throw new Error('Version mismatch, your record is out of date.')
+        }
+        raid.version = (raid.version || 0) + 1
         await collection.updateOne({ _id: getObjectID(raid.id) }, { $set: _.omit(raid, ['id']) })
         return raid
     } else {
