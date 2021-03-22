@@ -1,6 +1,6 @@
 {
   "name": "functions",
-  "version": "1.1.5",
+  "version": "1.1.6-beta.1",
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "dev": "supervisor ./bin/www.js",
@@ -16,6 +16,7 @@
   "main": "index.js",
   "dependencies": {
     "apollo-server": "^2.19.0",
+    "apollo-server-express": "^2.21.2",
     "async-lock": "^1.2.6",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -23,6 +24,7 @@
     "firebase-functions": "^3.11.0",
     "graphql": "^15.4.0",
     "graphql-tools": "^7.0.2",
+    "ical-generator": "^1.15.4",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "mongodb": "^3.6.3",
