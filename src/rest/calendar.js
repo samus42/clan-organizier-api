@@ -22,7 +22,7 @@ const activityToEvent = (activity) => {
         id: activity.id,
         start: activityDate,
         end: moment(activityDate).add(90, 'minutes'),
-        summary: activity.activityName,
+        summary: activity.type === 'custom' ? activity.instanceName : activity.activityName,
         description: activity.instanceName,
         location: 'Online',
         url: `https://shenaniganizers.com/activity/${activity.id}`
