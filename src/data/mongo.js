@@ -1,4 +1,4 @@
-const { MongoClient, ObjectID } = require('mongodb')
+const { MongoClient, ObjectId } = require('mongodb')
 const _ = require('lodash')
 const connStr = process.env.MONGO_DB_CONN
 const dbName = process.env.MONGO_DB_NAME
@@ -6,8 +6,8 @@ const env = process.env.NODE_ENV
 
 const AsyncLock = require('async-lock');
 const lock = new AsyncLock();
-// console.log(connStr)
-const client = new MongoClient(connStr, { useNewUrlParser: true, useUnifiedTopology: true })
+console.log('conn str: ', connStr)
+let client = null
 
 let db = null
 const postfix = env === 'testing' ? '_it' : ''
@@ -17,11 +17,13 @@ let connecting = false
 
 const getDB = async () => {
     return lock.acquire('db', async () => {
-        if (!db || !client.isConnected()) {
+        // if (!db || !client.isConnected()) {
+        if (!db) {
             if (connecting) {
                 setTimeout()
             }
             console.log('connecting')
+            client = new MongoClient(connStr, { useNewUrlParser: true, useUnifiedTopology: true })
             await client.connect()
             console.log('connected')
             db = client.db(dbName)
@@ -41,7 +43,7 @@ const getActivitiesCollection = async () => {
 }
 
 const getObjectID = (id) => {
-    return new ObjectID(id)
+    return new ObjectId(id)
 }
 
 const formatOutput = (obj) => {
