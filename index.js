@@ -14,4 +14,4 @@ server.applyMiddleware({ app, path: "/", cors: true })
 
 exports.api = functions.https.onRequest(app)
 
-exports.scheduledFunctionAutoArchive = functions.pubsub.schedule('every 1 day').onRun(autoArchive)
+exports.scheduledFunctionAutoArchive = functions.pubsub.schedule('every day 00:00').onRun(autoArchive)

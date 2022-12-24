@@ -24,7 +24,7 @@
     "firebase-functions": "^4.1.1",
     "graphql": "^15.4.0",
     "graphql-tools": "^7.0.2",
-    "ical-generator": "^1.15.4",
+    "ical-generator": "^3.6.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mongodb": "^4.12.1",
