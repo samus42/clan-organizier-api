@@ -34,10 +34,18 @@ type Role {
     player: DestinyPlayer
 }
 
+type Strategy {
+    title: String,
+    description: String,
+    roles: [Role]
+}
+
 type Stage {
     title: String
     description: String
     roles: [Role]
+    strategies: [Strategy]
+    strategy: Strategy
 }
 
 type Raid {
@@ -73,10 +81,17 @@ input RoleInput {
     player: DestinyPlayerInput
 }
 
+input StrategyInput {
+    title: String
+    description: String
+    roles: [RoleInput]
+}
 input StageInput {
     title: String
     description: String
     roles: [RoleInput]
+    strategies: [StrategyInput]
+    strategy: StrategyInput
 }
 
 input RaidInput {
