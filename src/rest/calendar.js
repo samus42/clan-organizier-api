@@ -1,4 +1,4 @@
-const ical = require('ical-generator')
+const { default: ical } = require('ical-generator')
 const moment = require('moment')
 const getRaids = require('../data/raids/getRaids')
 const getActivities = require('../data/activities/getActivities')
